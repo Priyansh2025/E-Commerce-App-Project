@@ -1,0 +1,173 @@
+/* src/index.css */
+
+/* --- 1. Import Modern Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- 2. Vibrant Design System --- */
+:root {
+  --primary: #8b5cf6; /* Vibrant Purple to match your screenshot */
+  --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+  --bg-color: #f3f4f6; /* Soft gray background */
+  --surface: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --danger: #ef4444;
+  --radius: 20px; /* Highly rounded, friendly corners */
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  --shadow-hover: 0 20px 25px -5px rgba(139, 92, 246, 0.15), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Snappy animation curve */
+}
+
+/* --- 3. Dark Mode Theme Variables --- */
+[data-theme='dark'] {
+  --bg-color: #111827; /* Deep gray/black */
+  --surface: #1f2937;  /* Slightly lighter gray for cards */
+  --text-main: #f9fafb; /* Crisp white text */
+  --text-muted: #9ca3af; /* Light gray text */
+  --border: #374151; /* Dark subtle borders */
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  /* Notice we DO NOT change the --primary purple colors, they look amazing in dark mode! */
+}
+
+/* --- 4. Base Reset --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+a { text-decoration: none; color: inherit; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.page-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text-main); letter-spacing: -0.02em; }
+
+/* --- 5. Component Styles --- */
+
+/* Glassmorphism Navbar */
+.navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(31, 41, 55, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo { 
+  font-size: 1.75rem; font-weight: 700; 
+  background: var(--primary-gradient); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  display: flex; align-items: center; gap: 0.5rem; 
+}
+
+.nav-links { display: flex; gap: 2rem; font-weight: 500; align-items: center; }
+.nav-links a { position: relative; transition: var(--transition); }
+.nav-links a:hover { color: var(--primary); }
+
+.nav-icon { position: relative; color: var(--text-main); transition: var(--transition); display: flex; align-items: center; }
+.nav-icon:hover { transform: scale(1.15); color: var(--primary); }
+
+.badge { 
+  position: absolute; top: -8px; right: -12px; 
+  background: var(--primary-gradient); color: white; 
+  border-radius: 20px; padding: 2px 8px; 
+  font-size: 0.75rem; font-weight: 700; 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+}
+
+/* Stunning Hero Section */
+.hero-section {
+  background: var(--primary-gradient);
+  padding: 5rem 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  margin-bottom: 4rem;
+  color: white;
+  box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.3);
+}
+.hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+.hero-subtitle { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2.5rem; font-weight: 400; max-width: 600px; margin-inline: auto;}
+
+/* Animated Buttons */
+.btn {
+  padding: 0.8rem 1.8rem; border: none; border-radius: 30px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem;
+}
+.btn-primary { background: var(--primary-gradient); color: white; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6); }
+.btn-primary:active { transform: translateY(1px); }
+
+/* Inverted button for the dark hero background */
+.btn-hero { background: white; color: var(--primary); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+.btn-hero:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
+
+.btn-outline { background-color: var(--surface); border: 2px solid var(--border); color: var(--text-main); transition: var(--transition); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); background-color: rgba(139, 92, 246, 0.05); transform: translateY(-2px); }
+
+/* Floating Product Cards */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+.product-card { background-color: var(--surface); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; transition: var(--transition); box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.05); }
+.product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+
+.product-image { width: 100%; height: 220px; object-fit: contain; margin-bottom: 1.5rem; transition: var(--transition); mix-blend-mode: multiply; }
+.product-card:hover .product-image { transform: scale(1.08); }
+
+/* Fix product images for Dark Mode so they don't disappear into the dark background */
+[data-theme='dark'] .product-image {
+  mix-blend-mode: normal;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.product-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); line-height: 1.3; }
+.product-category { background: var(--bg-color); color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 12px; align-self: flex-start; margin-bottom: 1rem; font-weight: 600;}
+.product-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; margin-top: auto; }
+.product-price { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+
+/* Increased gap to 2rem for better spacing between wishlist and cart buttons */
+.product-actions { display: flex; gap: 2rem; align-items: center; margin-top: 10px; }
+
+/* Custom Inputs */
+.input-field { width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 12px; font-family: inherit; transition: var(--transition); font-size: 1rem; background-color: var(--bg-color); color: var(--text-main); }
+.input-field:focus { outline: none; border-color: var(--primary); background-color: var(--surface); box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1); }
+
+/* Rating Badge */
+.rating-badge {
+  background-color: var(--bg-color); /* Will be light in Light Mode, dark in Dark Mode */
+  color: var(--text-main);           /* Will be dark in Light Mode, white in Dark Mode */
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+}
+
+.product-price::before {
+  margin-right: 4px;
+}
+
+.product-description-text {
+  color: var(--text-main) !important; /* Forces the color to change in Dark Mode */
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+  display: block !important; /* Ensures it's not accidentally hidden */
+  min-height: 50px; /* Ensures space is reserved */
+}
